@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Metadata and assets: the layout still works with system fonts if Google Fonts cannot load.
+         Both scripts are deferred so the project grid exists before app.js tries to populate it. -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#f5f4ed">
+    <meta name="description" content="A growing collection of websites by Keith Galway.">
+    <title>Keith Galway — Websites with a little more life</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <script src="projects.js" defer></script>
+    <script src="app.js" defer></script>
+  </head>
+  <body>
+    <!-- The skip link lets keyboard users bypass repeated navigation and reach the collection. -->
+    <a class="skip-link" href="#work">Skip to projects</a>
+    <div class="page-shell">
+      <header class="site-header">
+        <a class="brand" href="#top" aria-label="Keith Galway home">
+          <span class="brand-mark">kg<span>.</span></span>
+          <span class="brand-name">Keith<br>Galway</span>
+        </a>
+        <nav class="navigation" aria-label="Main navigation">
+          <a href="#work">The work <span>↘</span></a>
+          <a href="#about">The idea <span>↘</span></a>
+        </nav>
+        <a class="header-button" href="#work">Explore the work <span>↗</span></a>
+      </header>
+
+      <main id="top">
+        <!-- Hero: the browser, flower, and orbit are decorative CSS artwork rather than images.
+             They are hidden from assistive technology because the surrounding copy conveys the message. -->
+        <section class="hero" aria-labelledby="hero-title">
+          <div class="hero-copy">
+            <div class="eyebrow"><span class="status-dot"></span> A LITTLE CORNER OF THE INTERNET</div>
+            <h1 id="hero-title">Websites<br>with a little<br><em>more life.</em></h1>
+            <p>A collection of ideas, experiments, and websites made to leave an impression.</p>
+            <a class="round-link" href="#work"><span class="round-arrow">↘</span><span>Take a look around</span></a>
+          </div>
+          <div class="hero-art" aria-hidden="true">
+            <div class="art-orbit orbit-one"></div>
+            <div class="art-orbit orbit-two"></div>
+            <div class="art-spark spark-one">✳</div>
+            <div class="art-spark spark-two">✳</div>
+            <div class="floating-note"><span>✦</span> MADE FOR<br>THE INTERNET</div>
+            <div class="browser-art">
+              <div class="browser-top"><span></span><span></span><span></span><i>keithgalway.dev</i></div>
+              <div class="browser-body">
+                <div class="browser-mini-head"><b>GOOD IDEAS<br>LIVE HERE.</b><span>✳</span></div>
+                <div class="browser-flower"><span></span><span></span><span></span><span></span><span></span><span></span><i></i></div>
+                <div class="browser-bottom"><span>A LITTLE DIFFERENT.<br>A LOT MORE YOU.</span><b>↗</b></div>
+              </div>
+            </div>
+            <div class="art-caption"><span>IDEAS IN MOTION</span><span>EST. RIGHT NOW ↗</span></div>
+          </div>
+          <div class="hero-index"><span>CREATIVE BY NATURE</span><span>SCROLL TO EXPLORE ↓</span></div>
+        </section>
+
+        <!-- Collection: app.js populates this grid from the ten entries in projects.js.
+             A no-JavaScript message replaces the otherwise empty grid when scripts are disabled. -->
+        <section class="work-section" id="work" aria-labelledby="work-title">
+          <div class="section-topline"><span>01 / THE COLLECTION</span><span>ALWAYS A WORK IN PROGRESS ✳</span></div>
+          <div class="section-heading">
+            <div>
+              <span class="section-kicker">THE GOOD STUFF</span>
+              <h2 id="work-title">A little bit of <em>everything.</em></h2>
+            </div>
+            <p>Ten spaces for ten ideas. This collection will grow as new websites come to life.</p>
+          </div>
+          <div class="projects-grid" id="projects-grid"></div>
+          <noscript><p class="noscript-message">Enable JavaScript to see the project collection.</p></noscript>
+          <div class="collection-end"><span>✳</span><p>More ideas on the way.<br><strong>Watch this space.</strong></p><span>10 / 10</span></div>
+        </section>
+
+        <!-- The idea section provides context without implying that placeholder projects are complete. -->
+        <section class="about-section" id="about" aria-labelledby="about-title">
+          <div class="about-label">02 / THE IDEA</div>
+          <div class="about-content">
+            <span class="section-kicker">A NOTE FROM KEITH</span>
+            <h2 id="about-title">A home for the<br><em>things I make.</em></h2>
+            <p>Every website starts with an idea. This is where those ideas will find their place, one project at a time.</p>
+            <a class="about-link" href="#work">BACK TO THE WORK <span>↗</span></a>
+          </div>
+          <div class="about-stamp" aria-hidden="true"><span>MADE TO BE<br>EXPLORED</span><b>✳</b><small>KEEP SCROLLING<br>KEEP CREATING</small></div>
+        </section>
+      </main>
+
+      <!-- The year is filled in by app.js so the footer stays current. -->
+      <footer class="site-footer">
+        <a class="footer-brand" href="#top">kg<span>.</span></a>
+        <p>Ideas are better<br>out in the world.</p>
+        <div class="footer-right"><span>© <span id="year"></span> KEITH GALWAY</span><a href="#top">BACK TO TOP ↑</a></div>
+      </footer>
+    </div>
+  </body>
+</html>

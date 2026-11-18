@@ -1,0 +1,177 @@
+/* Design tokens: shared colors and fonts keep the hero, collection, and footer
+   visually consistent. Font fallbacks keep the page usable without Google Fonts. */
+:root {
+  --paper: #f5f4ed;
+  --ink: #20271f;
+  --muted: #6d7268;
+  --line: #d7d9cc;
+  --orange: #e85c36;
+  --blue: #a4b7ed;
+  font-family: "DM Sans", sans-serif;
+  color: var(--ink);
+  background: var(--paper);
+  font-synthesis: none;
+}
+/* Base layout and keyboard access. The centered shell also caps very wide screens. */
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { margin: 0; }
+a { color: inherit; text-decoration: none; }
+a:focus-visible { outline: 3px solid var(--orange); outline-offset: 5px; }
+.skip-link { position: absolute; top: -60px; left: 16px; z-index: 20; padding: 12px; background: var(--ink); color: white; }
+.skip-link:focus { top: 16px; }
+.page-shell { max-width: 1800px; margin: auto; overflow: hidden; }
+/* Header: the brand stays on the left while navigation and the primary link sit right. */
+.site-header { height: 101px; padding: 0 7.2%; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid var(--line); }
+.brand { display: flex; align-items: center; gap: 12px; }
+.brand-mark, .footer-brand { font-family: "Manrope", sans-serif; font-size: 41px; font-weight: 800; letter-spacing: -5px; line-height: 1; }
+.brand-mark span, .footer-brand span { color: var(--orange); }
+.brand-name { font-size: 11px; font-weight: 700; line-height: 1.15; letter-spacing: -.02em; }
+.navigation { display: flex; align-items: center; gap: 44px; margin-left: auto; margin-right: 56px; font-size: 12px; font-weight: 700; }
+.navigation a span { color: #8c9286; margin-left: 4px; }
+.header-button { border: 1px solid var(--ink); border-radius: 100px; padding: 15px 20px; font-size: 11px; font-weight: 700; transition: background .2s, color .2s; }
+.header-button span { margin-left: 20px; font-size: 15px; }
+.header-button:hover { background: var(--ink); color: var(--paper); }
+/* Hero: copy and artwork share two columns on wide screens. Fluid type keeps the
+   headline prominent without requiring a separate size for every viewport. */
+.hero { position: relative; display: grid; grid-template-columns: 1fr 1fr; min-height: 686px; padding: 100px 7.2% 92px; }
+.hero-copy { position: relative; z-index: 2; }
+.eyebrow, .section-topline, .section-kicker, .hero-index, .about-label, .footer-right, .art-caption { font-size: 10px; font-weight: 700; letter-spacing: .12em; }
+.eyebrow { display: flex; align-items: center; gap: 9px; }
+.status-dot { width: 8px; height: 8px; background: var(--orange); border-radius: 50%; }
+h1, h2, h3, p { margin: 0; }
+h1, h2 { font-family: "Manrope", sans-serif; letter-spacing: -.065em; }
+h1 { margin-top: 37px; font-size: clamp(60px, 6.7vw, 104px); line-height: .99; font-weight: 800; }
+h1 em, h2 em { color: var(--orange); font-family: Georgia, serif; font-weight: 400; letter-spacing: -.075em; }
+.hero-copy > p { max-width: 350px; margin-top: 29px; font-size: 15px; line-height: 1.8; color: var(--muted); }
+.round-link { margin-top: 37px; display: inline-flex; align-items: center; gap: 13px; font-size: 12px; font-weight: 700; }
+.round-arrow { display: grid; width: 42px; height: 42px; place-items: center; background: var(--ink); color: white; border-radius: 50%; font-size: 19px; transition: transform .2s, background .2s; }
+.round-link:hover .round-arrow { transform: translate(3px, 3px); background: var(--orange); }
+/* Hero illustration: layered CSS shapes create a browser window and orbit without
+   image assets. Absolute positioning keeps decorative elements out of the text flow. */
+.hero-art { position: relative; min-height: 440px; display: grid; place-items: center; }
+.art-orbit { position: absolute; border: 1px solid #d6dacd; border-radius: 50%; width: 410px; height: 410px; }
+.orbit-two { width: 490px; height: 490px; }
+.browser-art { position: relative; width: min(72%, 370px); height: 326px; transform: rotate(6deg); background: #dce5ca; box-shadow: 0 23px 60px #29342820; border: 1px solid var(--ink); }
+.browser-top { height: 31px; border-bottom: 1px solid var(--ink); display: flex; align-items: center; gap: 4px; padding: 0 10px; background: #f2f1e8; }
+.browser-top > span { width: 5px; height: 5px; border: 1px solid var(--ink); border-radius: 50%; }
+.browser-top i { margin: auto; font-size: 8px; font-style: normal; color: #767d6e; }
+.browser-body { height: calc(100% - 31px); padding: 19px; overflow: hidden; position: relative; }
+.browser-mini-head { display: flex; justify-content: space-between; align-items: start; font-family: "Manrope", sans-serif; font-size: 10px; line-height: 1.1; }
+.browser-mini-head span { font-size: 25px; color: var(--orange); }
+/* Six rotated petals share a common origin, with a circular center above them. */
+.browser-flower { position: absolute; left: 50%; top: 50%; width: 160px; height: 160px; transform: translate(-50%, -50%); }
+.browser-flower span { position: absolute; left: 57px; top: 4px; width: 47px; height: 81px; border-radius: 50%; background: #e8613c; transform-origin: 50% 76px; }
+.browser-flower span:nth-child(2) { transform: rotate(60deg); }
+.browser-flower span:nth-child(3) { transform: rotate(120deg); }
+.browser-flower span:nth-child(4) { transform: rotate(180deg); }
+.browser-flower span:nth-child(5) { transform: rotate(240deg); }
+.browser-flower span:nth-child(6) { transform: rotate(300deg); }
+.browser-flower i { position: absolute; left: 65px; top: 64px; width: 31px; height: 31px; border-radius: 50%; background: #f1df8d; }
+.browser-bottom { position: absolute; bottom: 17px; left: 19px; right: 19px; display: flex; justify-content: space-between; align-items: end; font-size: 8px; font-weight: 700; line-height: 1.4; }
+.browser-bottom b { font-size: 19px; }
+.art-spark { position: absolute; color: var(--orange); font-size: 38px; }
+.spark-one { top: 13px; right: 23%; }
+.spark-two { bottom: 43px; left: 9%; font-size: 24px; }
+.floating-note { position: absolute; z-index: 2; right: 0; bottom: 55px; background: #f0d974; padding: 17px; font-size: 9px; line-height: 1.4; font-weight: 700; transform: rotate(-8deg); box-shadow: 0 8px 20px #0000000c; }
+.floating-note span { display: block; font-size: 23px; margin-bottom: 12px; }
+.art-caption { position: absolute; bottom: -34px; left: 8%; right: 4%; display: flex; justify-content: space-between; color: #999e90; font-size: 8px; }
+.hero-index { position: absolute; bottom: 26px; left: 7.2%; right: 7.2%; display: flex; justify-content: space-between; color: #92988a; font-size: 9px; }
+/* Work collection: the two-column grid holds both finished links and empty slots.
+   Card imagery maintains a consistent aspect ratio as the viewport changes. */
+.work-section { background: #e8ebde; padding: 32px 7.2% 90px; }
+.section-topline { display: flex; justify-content: space-between; color: #747d6d; padding-bottom: 30px; border-bottom: 1px solid #cbd1c1; font-size: 9px; }
+.section-heading { display: flex; justify-content: space-between; align-items: end; gap: 40px; margin: 75px 0 48px; }
+.section-kicker { color: var(--orange); }
+.section-heading h2, .about-content h2 { margin-top: 18px; font-size: clamp(43px, 4.7vw, 72px); line-height: 1.05; }
+.section-heading > p { max-width: 270px; color: #6c7567; font-size: 13px; line-height: 1.7; padding-bottom: 5px; }
+.projects-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 45px 24px; }
+.project-card { min-width: 0; display: block; }
+.project-visual { position: relative; aspect-ratio: 1.48; overflow: hidden; background: #b4c7a6; }
+.project-visual img { display: block; width: 100%; height: 100%; object-fit: cover; transition: transform .35s ease; }
+a.project-card:hover img, a.project-card:hover .project-artwork { transform: scale(1.035); }
+.project-artwork { position: absolute; inset: 0; overflow: hidden; transition: transform .35s ease; }
+.artwork-label { position: absolute; top: 10%; left: 8%; font-size: clamp(8px, 1vw, 11px); font-weight: 700; letter-spacing: .08em; line-height: 1.4; }
+.artwork-number { position: absolute; bottom: 3%; right: 7%; font-family: "Manrope", sans-serif; font-size: clamp(80px, 11vw, 170px); font-weight: 800; letter-spacing: -.1em; line-height: 1; opacity: .16; }
+.artwork-star { position: absolute; right: 9%; top: 9%; font-size: 28px; }
+/* Placeholder variants use the same markup with different colors and shapes.
+   These styles remain behind real screenshots when an image is configured. */
+.artwork-shape { position: absolute; width: 35%; aspect-ratio: 1; border-radius: 50%; background: #f1d77d; top: 27%; left: 32%; box-shadow: -38px 30px 0 #e06f50; }
+.visual-2 { background: #d4b8aa; }
+.visual-2 .artwork-shape { border-radius: 50% 50% 4% 4%; background: #e7e2cc; box-shadow: 28px 25px 0 #9c624e; transform: rotate(15deg); }
+.visual-3 { background: #b9c9e8; }
+.visual-3 .artwork-shape { background: #efe7c8; border-radius: 50% 0 50% 50%; box-shadow: -30px -20px 0 #6c82bd; transform: rotate(-25deg); }
+.visual-4 { background: #e3c66e; }
+.visual-4 .artwork-shape { border-radius: 10%; background: #e97c58; box-shadow: 35px 20px 0 #f3edc9; transform: rotate(45deg); }
+.visual-5 { background: #c6b8d2; }
+.visual-5 .artwork-shape { background: #61745a; box-shadow: 38px 25px 0 #e6d7b6; }
+.project-badge { position: absolute; left: 16px; bottom: 16px; padding: 9px 11px; background: var(--paper); font-size: 9px; letter-spacing: .08em; font-weight: 700; }
+.project-info { display: flex; justify-content: space-between; align-items: center; padding: 18px 0 0; }
+.project-info h3 { font-family: "Manrope", sans-serif; font-size: 19px; letter-spacing: -.04em; }
+.project-info p { margin-top: 5px; color: #737c6d; font-size: 12px; }
+.project-arrow { display: grid; place-items: center; border: 1px solid #bec7b7; border-radius: 50%; width: 36px; height: 36px; font-size: 17px; transition: background .2s, color .2s; }
+a.project-card:hover .project-arrow { background: var(--ink); color: white; }
+.collection-end { border-top: 1px solid #cbd1c1; display: flex; align-items: center; gap: 16px; margin-top: 75px; padding-top: 28px; font-size: 12px; line-height: 1.5; color: #6c7567; }
+.collection-end > span:first-child { font-size: 36px; color: var(--orange); }
+.collection-end strong { color: var(--ink); }
+.collection-end > span:last-child { margin-left: auto; font-size: 10px; letter-spacing: .1em; font-weight: 700; }
+/* Closing section and footer: the stamp is decorative, while text and links remain
+   independently readable when the layout collapses on smaller screens. */
+.about-section { position: relative; display: grid; grid-template-columns: 1fr 2fr 1fr; gap: 35px; padding: 115px 7.2% 120px; }
+.about-label { color: #8c9385; }
+.about-content p { max-width: 380px; margin-top: 25px; color: var(--muted); line-height: 1.8; font-size: 14px; }
+.about-link { display: inline-flex; gap: 30px; border-bottom: 1px solid var(--ink); padding-bottom: 10px; margin-top: 28px; font-size: 10px; letter-spacing: .08em; font-weight: 700; }
+.about-stamp { justify-self: end; align-self: center; width: 155px; height: 155px; border: 1px solid #abb3a3; border-radius: 50%; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; transform: rotate(12deg); font-size: 9px; font-weight: 700; letter-spacing: .08em; line-height: 1.4; }
+.about-stamp b { color: var(--orange); font-size: 32px; }
+.about-stamp small { font-size: 7px; }
+.site-footer { background: var(--ink); color: var(--paper); padding: 40px 7.2%; display: flex; align-items: center; gap: 25px; }
+.footer-brand { font-size: 49px; }
+.site-footer > p { font-size: 11px; line-height: 1.5; color: #bbc0b5; }
+.footer-right { margin-left: auto; display: flex; gap: 45px; font-size: 9px; color: #bbc0b5; }
+.footer-right a { color: var(--paper); }
+/* Tablet: stack the hero and simplify navigation; keep the project grid in two columns. */
+@media (max-width: 800px) {
+  .site-header { height: 78px; padding: 0 6%; }
+  .navigation { gap: 18px; margin-right: 0; }
+  .header-button { display: none; }
+  .hero { grid-template-columns: 1fr; padding: 72px 6% 85px; }
+  h1 { font-size: clamp(58px, 11vw, 88px); }
+  .hero-art { min-height: 440px; margin-top: 55px; }
+  .hero-index { left: 6%; right: 6%; }
+  .work-section { padding: 30px 6% 70px; }
+  .section-heading { margin-top: 60px; }
+  .about-section { padding: 80px 6%; grid-template-columns: 1fr 3fr; }
+  .about-stamp { display: none; }
+}
+/* Phone: use a single project column and scale down the decorative illustration. */
+@media (max-width: 520px) {
+  .brand-mark { font-size: 36px; }
+  .navigation { font-size: 11px; }
+  .navigation a span { display: none; }
+  h1 { font-size: clamp(53px, 13vw, 68px); }
+  .hero { padding-top: 60px; }
+  .hero-art { min-height: 340px; margin-top: 42px; }
+  .art-orbit { width: 280px; height: 280px; }
+  .orbit-two { width: 340px; height: 340px; }
+  .browser-art { width: 70%; height: 250px; }
+  .browser-flower { transform: translate(-50%, -50%) scale(.75); }
+  .floating-note { right: 0; bottom: 15px; padding: 12px; font-size: 8px; }
+  .art-caption { display: none; }
+  .hero-index { font-size: 8px; }
+  .section-topline { font-size: 8px; gap: 15px; }
+  .section-topline span:last-child { text-align: right; }
+  .section-heading { display: block; }
+  .section-heading h2, .about-content h2 { font-size: 45px; }
+  .section-heading > p { margin-top: 20px; }
+  .projects-grid { grid-template-columns: 1fr; gap: 32px; }
+  .artwork-number { font-size: 110px; }
+  .about-section { display: block; }
+  .about-content { margin-top: 35px; }
+  .site-footer { padding: 35px 6%; flex-wrap: wrap; }
+  .footer-right { width: 100%; margin: 10px 0 0; justify-content: space-between; gap: 10px; }
+}
+/* Respect visitors who prefer less motion, including anchor scrolling and hover effects. */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { transition-duration: .01ms !important; }
+}
